@@ -6,7 +6,68 @@ from streamlit import session_state as ss
 
 st.title("Find companies you are looking for")
 
-# map stuff
+companies = {
+    "Saudi Aramco": {
+        "latitude": 26.2777, "longitude": 50.2083, "country": "Saudi Arabia", "city": "Dhahran"
+    },
+    "China Petroleum & Chemical Corp. (SNPMF)": {
+        "latitude": 39.9042, "longitude": 116.4074, "country": "China", "city": "Beijing"
+    },
+    "PetroChina Co. Ltd. (PCCYF)": {
+        "latitude": 39.9042, "longitude": 116.4074, "country": "China", "city": "Beijing"
+    },
+    "Exxon Mobil Corp. (XOM)": {
+        "latitude": 32.8140, "longitude": -96.9489, "country": "USA", "city": "Irving, Texas"
+    },
+    "Shell PLC (SHEL)": {
+        "latitude": 51.5074, "longitude": -0.1278, "country": "UK", "city": "London"
+    },
+    "TotalEnergies SE (TTE)": {
+        "latitude": 48.8955, "longitude": 2.2568, "country": "France", "city": "Courbevoie"
+    },
+    "Chevron Corp. (CVX)": {
+        "latitude": 37.7799, "longitude": -121.9780, "country": "USA", "city": "San Ramon, California"
+    },
+    "BP PLC (BP)": {
+        "latitude": 51.5074, "longitude": -0.1278, "country": "UK", "city": "London"
+    },
+    "Marathon Petroleum Corp. (MPC)": {
+        "latitude": 41.0442, "longitude": -83.6499, "country": "USA", "city": "Findlay, Ohio"
+    },
+    "Valero Energy Corp. (VLO)": {
+        "latitude": 29.4241, "longitude": -98.4936, "country": "USA", "city": "San Antonio, Texas"
+    },
+    "ConocoPhillips (COP)": {
+        "latitude": 29.7604, "longitude": -95.3698, "country": "USA", "city": "Houston, Texas"
+    },
+    "Petrobras (PBR)": {
+        "latitude": -22.9068, "longitude": -43.1729, "country": "Brazil", "city": "Rio de Janeiro"
+    },
+    "Enbridge (ENB)": {
+        "latitude": 51.0447, "longitude": -114.0719, "country": "Canada", "city": "Calgary"
+    },
+    "Canadian Natural Resources (CNQ)": {
+        "latitude": 51.0447, "longitude": -114.0719, "country": "Canada", "city": "Calgary"
+    },
+    "Equinor (EQNR)": {
+        "latitude": 58.9690, "longitude": 5.7331, "country": "Norway", "city": "Stavanger"
+    },
+    "ENI (E)": {
+        "latitude": 41.9028, "longitude": 12.4964, "country": "Italy", "city": "Rome"
+    },
+    "Woodside Energy (WDS)": {
+        "latitude": -31.9505, "longitude": 115.8605, "country": "Australia", "city": "Perth"
+    },
+    "Repsol (REP.MC)": {
+        "latitude": 40.4168, "longitude": -3.7038, "country": "Spain", "city": "Madrid"
+    },
+    "OMV (OMV.F)": {
+        "latitude": 48.2082, "longitude": 16.3738, "country": "Austria", "city": "Vienna"
+    },
+    "Suncor Energy (SU)": {
+        "latitude": 51.0447, "longitude": -114.0719, "country": "Canada", "city": "Calgary"
+    }
+}
 
 st.markdown("Do you want to add a company?")
 with st.popover("📎",use_container_width=True):
