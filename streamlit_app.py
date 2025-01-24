@@ -22,9 +22,6 @@ companies = {
     "Shell PLC (SHEL)": {
         "latitude": 51.5074, "longitude": -0.1278, "country": "UK", "city": "London"
     },
-    "TotalEnergies SE (TTE)": {
-        "latitude": 48.8955, "longitude": 2.2568, "country": "France", "city": "Courbevoie"
-    },
     "Chevron Corp. (CVX)": {
         "latitude": 37.7799, "longitude": -121.9780, "country": "USA", "city": "San Ramon, California"
     },
@@ -68,6 +65,36 @@ companies = {
         "latitude": 51.0447, "longitude": -114.0719, "country": "Canada", "city": "Calgary"
     }
 }
+
+#reformatting companies to be in the same format as Names with their latitude and longitude
+companies = pd.DataFrame(companies.items(), columns=["Name", "properties"])
+#setting latitude and longitude,  the country and city:
+companies[["Latitude", "Longitude", "Country", "City"]] = pd.DataFrame(companies["properties"].tolist(), index=companies.index)
+#adding a size column to the companies dataframe
+companies["size"] = 90000
+
+point_layer2 = pydeck.Layer(
+    "ScatterplotLayer",
+    data=companies,
+    id="companies",
+    get_position=["Longitude", "Latitude"],
+    get_color="[75, 75, 255, 205]",
+    pickable=True,
+    auto_highlight=True,
+    get_radius="size",
+)
+
+view_state = pydeck.ViewState(
+    latitude=48.1351, longitude=11.5820, zoom=3, min_zoom=0, max_zoom=20
+)
+
+chart2 = pydeck.Deck(
+    point_layer2,
+    initial_view_state=view_state,
+    tooltip={"text": "{Name}\n{Latitude}, {Longitude}"},
+)
+
+event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object")
 
 st.markdown("Do you want to add a company?")
 with st.popover("📎",use_container_width=True):
