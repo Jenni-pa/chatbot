@@ -114,14 +114,9 @@ with st.popover("📎",use_container_width=True):
             uploaded_file = st.file_uploader("Choose a file",type=['txt'])
             NameOfCmpny = st.text_input('Company name:')
             
-            if st.session_state.stage > 0:
-                st.button("add company")
-                
-                if st.session_state.stage > 1:
+            if st.button("add company"):
                     st.write("Company added successfully")
-                    selectedcompanies+1
-                    company_names.append(NameOfCmpny)
-                # echter zufüg zu company auswahl fehlt noch!!!
+                    # echter zufüg zu company auswahl fehlt noch!!!
 
 prompts = {
         "one company": 
