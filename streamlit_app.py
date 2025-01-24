@@ -103,3 +103,26 @@ with st.popover("📎",use_container_width=True):
             NameOfCmpny = st.text_input('Company name:')
             if st.button("add company"):
                 st.write("Company added successfully")
+
+                # echter zufüg zu company auswahl fehlt noch!!!
+
+prompts = {
+        "Regarding the {category}, what does {company} say in their annual report and ESG report? Perform a thorough analysis.",
+        "Regarding the {category}, what do {companyA} and {companyB} say in their annual report and ESG report? Perform a thorough analysis and compare the companies." 
+        "Regarding the {category}, what do {companyA}, {companyB} and {companyC} say in their annual report and ESG report? Perform a thorough analysis and compare the companies." 
+}       
+
+options = ["Ecological", "Social", "Governance", "Overall"]
+selection = st.segmented_control("Select the focus area", options, selection_mode="single")
+if selection == "Ecological":
+        category = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management"])
+elif selection == "Social":
+        category = st.radio("Select the subcategory", ["Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion"])
+elif selection == "Governance":
+        category = st.radio("Select the subcategory", ["Regulatory Compliance", "Sustainability Reporting"])
+elif selection == "Overall":
+        category = st.radio("Select the subcategory", ["Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
+else:
+        category = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
+
+st.markdown(prompts)
