@@ -119,15 +119,12 @@ else:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies)
 
 prompts = {
-        "one company": [
-                 "Regarding the {category}, what does {company} say in their annual report and ESG report? Perform a thorough analysis."
-        ],
-        "2 companies": [
-                 "Regarding the {category}, what do {companyA} and {companyB} say in their annual report and ESG report? Perform a thorough analysis and compare the companies."
-        ],
-        "3 companies": [
-        "Regarding the {category}, what do {companyA}, {companyB} and {companyC} say in their annual report and ESG report? Perform a thorough analysis and compare the companies." 
-        ]
+        "one company": 
+                "Regarding the {category}, what does {company} say in their annual report and ESG report? Perform a thorough analysis.",
+        "2 companies":
+                "Regarding the {category}, what do {companyA} and {companyB} say in their annual report and ESG report? Perform a thorough analysis and compare the companies.",
+        "3 companies":
+                "Regarding the {category}, what do {companyA}, {companyB} and {companyC} say in their annual report and ESG report? Perform a thorough analysis and compare the companies." 
 }       
 
 options = ["Ecological", "Social", "Governance", "Overall"]
