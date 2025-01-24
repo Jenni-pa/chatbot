@@ -119,6 +119,7 @@ with st.popover("📎",use_container_width=True):
                 
                 if st.session_state.stage > 1:
                     st.write("Company added successfully")
+                    selectedcompanies+1
                     company_names.append(NameOfCmpny)
                 # echter zufüg zu company auswahl fehlt noch!!!
 
