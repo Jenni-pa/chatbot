@@ -104,7 +104,7 @@ with st.popover("📎",use_container_width=True):
             
             if st.button("add company"):
                     st.write("Company added successfully")
-                    companies.append(NameOfCmpny)
+                    companies._append(NameOfCmpny)
                     # echter zufüg zu company auswahl fehlt noch!!!
 
 try:
