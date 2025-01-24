@@ -96,6 +96,7 @@ chart2 = pydeck.Deck(
 
 event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object")
 
+addedCompany = None
 st.markdown("Do you want to add a company?")
 with st.popover("📎",use_container_width=True):
             #file upload:
@@ -113,6 +114,10 @@ with st.popover("📎",use_container_width=True):
                         "size": 90000         # Default size
 }
                     companies._append(new_company, ignore_index=True)
+                    addedCompany = True
+
+if addedCompany == True :
+      st.radio(f"Select your added company {NameOfCmpny}?", [NameOfCmpny])
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
