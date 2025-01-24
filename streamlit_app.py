@@ -106,23 +106,46 @@ with st.popover("📎",use_container_width=True):
 
                 # echter zufüg zu company auswahl fehlt noch!!!
 
+try:
+    selectedcompanies = event.selection["objects"]["companies"]
+except :
+    selectedcompanies = []
+
+st.session_state["allCompanies"] = companies
+if len(selectedcompanies) > 0:
+    company_names = [company["Name"] for company in selectedcompanies]
+    pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names)
+else:
+    pickedCompanies = st.multiselect("Selected Companie(s)", companies)
+
 prompts = {
-        "Regarding the {category}, what does {company} say in their annual report and ESG report? Perform a thorough analysis.",
-        "Regarding the {category}, what do {companyA} and {companyB} say in their annual report and ESG report? Perform a thorough analysis and compare the companies." 
+        "1 company": [
+                 "Regarding the {category}, what does {company} say in their annual report and ESG report? Perform a thorough analysis."
+        ],
+        "2 companies": [
+                 "Regarding the {category}, what do {companyA} and {companyB} say in their annual report and ESG report? Perform a thorough analysis and compare the companies."
+        ],
+        "3 companies": [
         "Regarding the {category}, what do {companyA}, {companyB} and {companyC} say in their annual report and ESG report? Perform a thorough analysis and compare the companies." 
+        ]
 }       
 
 options = ["Ecological", "Social", "Governance", "Overall"]
 selection = st.segmented_control("Select the focus area", options, selection_mode="single")
 if selection == "Ecological":
-        category = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management"])
+        chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management"])
 elif selection == "Social":
-        category = st.radio("Select the subcategory", ["Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion"])
+        chosenCategory = st.radio("Select the subcategory", ["Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion"])
 elif selection == "Governance":
-        category = st.radio("Select the subcategory", ["Regulatory Compliance", "Sustainability Reporting"])
+        chosenCategory = st.radio("Select the subcategory", ["Regulatory Compliance", "Sustainability Reporting"])
 elif selection == "Overall":
-        category = st.radio("Select the subcategory", ["Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
+        chosenCategory = st.radio("Select the subcategory", ["Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 else:
-        category = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
+        chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
-st.markdown(prompts)
+if len(selectedcompanies) == 1:
+    st.markdown(prompts[1 company].format(category=chosenCategory, company=selectedcompanies[0]))
+elif len(selectedcompanies) == 2:
+    st.markdown(prompts[2 companies].format(category=chosenCategory, companyA=selectedcompanies[0], companyB=selectedcompanies[1]))
+elif len(selectedcompanies) == 3:
+    st.markdown(prompts[3 companies].format(category=chosenCategory, companyA=selectedcompanies[0], companyB=selectedcompanies[1], companyC=selectedcompanies[2])) 
