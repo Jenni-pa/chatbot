@@ -141,8 +141,8 @@ else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
 if len(selectedcompanies) == 1:
-    st.markdown(prompts["one company"].format(category=chosenCategory, company=selectedcompanies[0]))
+    st.markdown(prompts["one company"].format(category=chosenCategory, company=selectedcompanies[0].Name))
 elif len(selectedcompanies) == 2:
-    st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=selectedcompanies[0], companyB=selectedcompanies[1]))
+    st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=selectedcompanies[0].Name, companyB=selectedcompanies[1].Name))
 elif len(selectedcompanies) == 3:
-    st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=selectedcompanies[0], companyB=selectedcompanies[1], companyC=selectedcompanies[2])) 
+    st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=selectedcompanies[0].Name, companyB=selectedcompanies[1].Name, companyC=selectedcompanies[2].Name)) 
