@@ -117,7 +117,7 @@ with st.popover("📎",use_container_width=True):
                     addedCompany = True
 
 if addedCompany == True :
-      st.radio(f"Select your added company {NameOfCmpny}?", [NameOfCmpny])
+      addedCompanyChosen = st.radio(f"Select your added company {NameOfCmpny}?", ["yes","no"])
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
@@ -130,7 +130,6 @@ if len(selectedcompanies) > 0:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names)
 else:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies)
-
 
 
 prompts = {
@@ -154,6 +153,9 @@ elif selection == "Overall":
         chosenCategory = st.radio("Select the subcategory", ["Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
+
+if addedCompanyChosen == "yes":
+    selectedcompanies+1
 
 if len(selectedcompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=company_names[0]))
