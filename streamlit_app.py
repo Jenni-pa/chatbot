@@ -104,8 +104,15 @@ with st.popover("📎",use_container_width=True):
             
             if st.button("add company"):
                     st.write("Company added successfully")
-                    companies._append(NameOfCmpny)
-                    # echter zufüg zu company auswahl fehlt noch!!!
+                    new_company = {
+                        "Name": NameOfCmpny,  # The name of the company
+                        "Latitude": None,   # Missing latitude
+                        "Longitude": None,  # Missing longitude
+                        "Country": None,      # Missing country
+                        "City": None,         # Missing city
+                        "size": 90000         # Default size
+}
+                    companies.append(new_company)
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
