@@ -96,21 +96,8 @@ chart2 = pydeck.Deck(
 
 event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object")
 
-st.markdown("Do you want to add a company?")
-with st.popover("📎",use_container_width=True):
-            #file upload:
-            uploaded_file = st.file_uploader("Choose a file",type=['txt'])
-            NameOfCompany = st.text_input('Company name:')
-            if st.button("add company"):
-                st.write("Company added successfully")
-                newCompanyChosen = st.radio("Select company?",[NameOfCompany])
-
 try:
     selectedcompanies = event.selection["objects"]["companies"]
-    if newCompanyChosen == True:
-          selectedcompanies.append(NameOfCompany)
-    else :
-          selectedcompanies
 except :
     selectedcompanies = []
 
@@ -120,6 +107,20 @@ if len(selectedcompanies) > 0:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names)
 else:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies)
+
+st.markdown("Do you want to add a company?")
+with st.popover("📎",use_container_width=True):
+            #file upload:
+            uploaded_file = st.file_uploader("Choose a file",type=['txt'])
+            NameOfCmpny = st.text_input('Company name:')
+            
+            if st.session_state.stage > 0:
+                st.button("add company")
+                
+                if st.session_state.stage > 1:
+                    st.write("Company added successfully")
+                    company_names.append(NameOfCmpny)
+                # echter zufüg zu company auswahl fehlt noch!!!
 
 prompts = {
         "one company": 
