@@ -156,7 +156,7 @@ else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
 if addedCompanyChosen == "yes":
-    selectedcompanies+1
+    len(selectedcompanies)+1
 
 if len(selectedcompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=company_names[0]))
