@@ -112,7 +112,7 @@ with st.popover("📎",use_container_width=True):
                         "City": None,         # Missing city
                         "size": 90000         # Default size
 }
-                    companies.append(new_company)
+                    companies._append(new_company)
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
