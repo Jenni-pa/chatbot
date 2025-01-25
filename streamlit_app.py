@@ -96,27 +96,6 @@ chart2 = pydeck.Deck(
 
 event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object")
 
-addedCompany = None
-st.markdown("Do you want to add a company?")
-with st.popover("📎",use_container_width=True):
-            #file upload:
-            uploaded_file = st.file_uploader("Choose a file",type=['txt'])
-            NameOfCmpny = st.text_input('Company name:')
-            
-            if st.button("add company"):
-                    st.write("Company added successfully")
-                    new_company = {
-                    "Name": NameOfCmpny,  # The name of the company
-                    "Latitude": None,   # Missing latitude
-                    "Longitude": None,  # Missing longitude
-                    "Country": None,      # Missing country
-                    "City": None,         # Missing city
-                    "size": 90000         # Default size
-                    }
-
-                    companies._append(new_company, ignore_index=True)
-                    addedCompany = True
-
 addedCompanyChosen = None
 if addedCompany == True :
       addedCompanyChosen = st.radio(f"Select your added company {NameOfCmpny}?", ["yes","no"])
@@ -158,8 +137,26 @@ elif selection == "Overall":
 else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
-st.markdown(pickedCompanies)
-st.markdown(len(pickedCompanies))
+addedCompany = None
+st.markdown("Do you want to add a company?")
+with st.popover("📎",use_container_width=True):
+            #file upload:
+            uploaded_file = st.file_uploader("Choose a file",type=['txt'])
+            NameOfCmpny = st.text_input('Company name:')
+            
+            if st.button("add company"):
+                    st.write("Company added successfully")
+                    new_company = {
+                    "Name": NameOfCmpny,  # The name of the company
+                    "Latitude": None,   # Missing latitude
+                    "Longitude": None,  # Missing longitude
+                    "Country": None,      # Missing country
+                    "City": None,         # Missing city
+                    "size": 90000         # Default size
+                    }
+
+                    companies._append(new_company, ignore_index=True)
+                    addedCompany = True
 
 if len(pickedCompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=pickedCompanies[0]))
