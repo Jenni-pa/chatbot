@@ -96,7 +96,7 @@ chart2 = pydeck.Deck(
 
 event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object")
 
-
+addedCompanyChosen = None
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
@@ -156,7 +156,6 @@ with st.popover("📎",use_container_width=True):
                     companies._append(new_company, ignore_index=True)
                     addedCompany = True
 
-addedCompanyChosen = None
 if addedCompany == True :
       addedCompanyChosen = st.radio(f"Select your added company {NameOfCmpny}?", ["yes","no"])
 
