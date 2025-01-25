@@ -161,9 +161,9 @@ else:
 st.markdown(pickedCompanies)
 st.markdown(len(pickedCompanies))
 
-if len(selectedcompanies) == 1:
+if len(pickedCompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=company_names[0]))
-elif len(selectedcompanies) == 2:
+elif len(pickedCompanies) == 2:
     st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=company_names[0], companyB=company_names[1]))
-elif len(selectedcompanies) == 3:
+elif len(pickedCompanies) == 3:
     st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=company_names[0], companyB=company_names[1], companyC=company_names[2])) 
