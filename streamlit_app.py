@@ -122,6 +122,8 @@ if addedCompany == True :
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
+    if addedCompanyChosen == "yes":
+        selectedcompanies.append(NameOfCmpny)
 except :
     selectedcompanies = []
 
@@ -155,8 +157,7 @@ elif selection == "Overall":
 else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
-if addedCompanyChosen == "yes":
-    len(selectedcompanies)+1
+
 
 if len(selectedcompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=company_names[0]))
