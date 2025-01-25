@@ -105,15 +105,15 @@ with st.popover("📎",use_container_width=True):
             
             if st.button("add company"):
                     st.write("Company added successfully")
-                   ''' new_company = {
+''' new_company = {
                         "Name": NameOfCmpny,  # The name of the company
                         "Latitude": None,   # Missing latitude
                         "Longitude": None,  # Missing longitude
                         "Country": None,      # Missing country
                         "City": None,         # Missing city
-                        "size": 90000         # Default size '''
+                        "size": 90000         # Default size
 }
-                 '''   companies._append(new_company, ignore_index=True)
+  companies._append(new_company, ignore_index=True)
                     addedCompany = True
 
 addedCompanyChosen = None
