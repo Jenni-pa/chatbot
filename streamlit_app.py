@@ -131,6 +131,7 @@ st.session_state["allCompanies"] = companies
 if len(selectedcompanies) > 0:
     company_names = [company["Name"] for company in selectedcompanies]
     pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names)
+    st.markdown(pickedCompanies)
     selectedcompanies.append(pickedCompanies)
 else:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies)
