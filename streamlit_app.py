@@ -122,15 +122,15 @@ if addedCompany == True :
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
-    if addedCompanyChosen == "yes":
-        selectedcompanies.append(NameOfCmpny)
+    # if addedCompanyChosen == "yes":
+    #    selectedcompanies.append(NameOfCmpny)
 except :
     selectedcompanies = []
 
 st.session_state["allCompanies"] = companies
 if len(selectedcompanies) > 0:
     company_names = [company["Name"] for company in selectedcompanies]
-    pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names, on_change=addedCompany)
+    pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names)
 else:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies)
 
@@ -157,7 +157,7 @@ elif selection == "Overall":
 else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
-
+st.markdown(selectedcompanies)
 
 if len(selectedcompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=company_names[0]))
