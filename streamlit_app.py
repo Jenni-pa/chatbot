@@ -99,6 +99,7 @@ event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object"
 addedCompany = None
 addedCompanyChosen = None
 
+# add check that map added companies less than 3
 try:
     selectedcompanies = event.selection["objects"]["companies"]
 except :
@@ -162,11 +163,21 @@ if addedCompany == True :
 if addedCompanyChosen == "yes":
     pickedCompanies.append(NameOfCmpny)
 
-if len(pickedCompanies) == 1:
-    st.markdown(prompts["one company"].format(category=chosenCategory, company=pickedCompanies[0]))
-elif len(pickedCompanies) == 2:
-    st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1]))
-elif len(pickedCompanies) == 3:
-    st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1], companyC=pickedCompanies[2])) 
+graphicalOutput = None
+graphicalOutput = st.radio("Do you want to visualize your question with a graph?", ["yes","no"])
 
-# add somewhere that maximum comparison is 3 companies!!!
+if len(pickedCompanies) == 1:
+    if graphicalOutput == "yes":
+        st.markdown(prompts["one company"].format(category=chosenCategory, company=pickedCompanies[0])+"Also show me a meaningful graph to visualize key numbers.")
+    else:
+        st.markdown(prompts["one company"].format(category=chosenCategory, company=pickedCompanies[0]))
+elif len(pickedCompanies) == 2:
+    if graphicalOutput == "yes":
+        st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1])+"Also show me a meaningful graph to visualize key numbers and differences.")
+    else:
+        st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1]))
+elif len(pickedCompanies) == 3:
+    if graphicalOutput == "yes":
+        st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1], companyC=pickedCompanies[2])+"Also show me a meaningful graph to visualize key numbers and differences.")
+    else:
+        st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1], companyC=pickedCompanies[2]))
