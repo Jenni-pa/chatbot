@@ -105,25 +105,24 @@ with st.popover("📎",use_container_width=True):
             
             if st.button("add company"):
                     st.write("Company added successfully")
-''' new_company = {
-                        "Name": NameOfCmpny,  # The name of the company
-                        "Latitude": None,   # Missing latitude
-                        "Longitude": None,  # Missing longitude
-                        "Country": None,      # Missing country
-                        "City": None,         # Missing city
-                        "size": 90000         # Default size
-}
-  companies._append(new_company, ignore_index=True)
-                    addedCompany = True
+                    new_company = {
+                    "Name": NameOfCmpny,  # The name of the company
+                    "Latitude": None,   # Missing latitude
+                    "Longitude": None,  # Missing longitude
+                    "Country": None,      # Missing country
+                    "City": None,         # Missing city
+                    "size": 90000         # Default size
+                    }
+
+companies._append(new_company, ignore_index=True)
+addedCompany = True
 
 addedCompanyChosen = None
 if addedCompany == True :
       addedCompanyChosen = st.radio(f"Select your added company {NameOfCmpny}?", ["yes","no"])
-'''
+
 try:
     selectedcompanies = event.selection["objects"]["companies"]
-    # if addedCompanyChosen == "yes":
-    #    selectedcompanies.append(NameOfCmpny)
 except :
     selectedcompanies = []
 
@@ -134,7 +133,8 @@ if len(selectedcompanies) > 0:
 else:
     pickedCompanies = st.multiselect("Selected Companie(s)", companies)
 
-# muss hier noch selected + picked companies --> im moment nur firmen aus der Map nicht der Liste
+if addedCompanyChosen == "yes":
+    pickedCompanies.append(NameOfCmpny)
 
 prompts = {
         "one company": 
