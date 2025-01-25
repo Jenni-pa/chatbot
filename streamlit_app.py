@@ -107,11 +107,9 @@ except :
 st.session_state["allCompanies"] = companies
 if len(selectedcompanies) > 0:
     company_names = [company["Name"] for company in selectedcompanies]
-    pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names)
+    pickedCompanies = st.multiselect("Selected Companie(s)", companies, company_names, max_selections=3)
 else:
-    pickedCompanies = st.multiselect("Selected Companie(s)", companies)
-
-
+    pickedCompanies = st.multiselect("Selected Companie(s)", companies, max_selections=3)
 
 prompts = {
         "one company": 
@@ -135,25 +133,28 @@ elif selection == "Overall":
 else:
         chosenCategory = st.radio("Select the subcategory", ["CO2 emissions", "Decarbonization Strategies & Initiatives", "Natural Resource Management", "Workers Rights", "Health & Safety Compliance", "Diversity, Equality and Inclusion", "Regulatory Compliance", "Sustainability Reporting", "Key Milestones & Achievements", "ESG-related Initiatives", "Awareness Regarding ESG-Responsibilities"])
 
-st.markdown("Do you want to add a company?")
-with st.popover("📎",use_container_width=True):
-            #file upload:
-            uploaded_file = st.file_uploader("Choose a file",type=['txt'])
-            NameOfCmpny = st.text_input('Company name:')
-            
-            if st.button("add company"):
-                    st.write("Company added successfully")
-                    new_company = {
-                    "Name": NameOfCmpny,  # The name of the company
-                    "Latitude": None,   # Missing latitude
-                    "Longitude": None,  # Missing longitude
-                    "Country": None,      # Missing country
-                    "City": None,         # Missing city
-                    "size": 90000         # Default size
-                    }
+if len(pickedCompanies) > 2:
+    st.markdown("You can not add another company, please deselect at least one of your chosen companies to upload your own.")
+else :
+    st.markdown("Do you want to add a company?")
+    with st.popover("📎",use_container_width=True):
+                #file upload:
+                uploaded_file = st.file_uploader("Choose a file",type=['txt'])
+                NameOfCmpny = st.text_input('Company name:')
+                
+                if st.button("add company"):
+                        st.write("Company added successfully")
+                        new_company = {
+                        "Name": NameOfCmpny,  # The name of the company
+                        "Latitude": None,   # Missing latitude
+                        "Longitude": None,  # Missing longitude
+                        "Country": None,      # Missing country
+                        "City": None,         # Missing city
+                        "size": 90000         # Default size
+                        }
 
-                    companies._append(new_company, ignore_index=True)
-                    addedCompany = True
+                        companies._append(new_company, ignore_index=True)
+                        addedCompany = True
 
 
 if addedCompany == True :
@@ -167,3 +168,5 @@ elif len(pickedCompanies) == 2:
     st.markdown(prompts["2 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1]))
 elif len(pickedCompanies) == 3:
     st.markdown(prompts["3 companies"].format(category=chosenCategory, companyA=pickedCompanies[0], companyB=pickedCompanies[1], companyC=pickedCompanies[2])) 
+
+# add somewhere that maximum comparison is 3 companies!!!
