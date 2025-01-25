@@ -96,10 +96,7 @@ chart2 = pydeck.Deck(
 
 event = st.pydeck_chart(chart2, on_select="rerun", selection_mode="multi-object")
 
-addedCompany = None
-addedCompanyChosen = None
-if addedCompany == True :
-      addedCompanyChosen = st.radio(f"Select your added company {NameOfCmpny}?", ["yes","no"])
+
 
 try:
     selectedcompanies = event.selection["objects"]["companies"]
@@ -158,6 +155,10 @@ with st.popover("📎",use_container_width=True):
 
                     companies._append(new_company, ignore_index=True)
                     addedCompany = True
+
+addedCompanyChosen = None
+if addedCompany == True :
+      addedCompanyChosen = st.radio(f"Select your added company {NameOfCmpny}?", ["yes","no"])
 
 if len(pickedCompanies) == 1:
     st.markdown(prompts["one company"].format(category=chosenCategory, company=pickedCompanies[0]))
