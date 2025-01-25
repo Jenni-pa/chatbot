@@ -114,8 +114,8 @@ with st.popover("📎",use_container_width=True):
                     "size": 90000         # Default size
                     }
 
-companies._append(new_company, ignore_index=True)
-addedCompany = True
+                    companies._append(new_company, ignore_index=True)
+                    addedCompany = True
 
 addedCompanyChosen = None
 if addedCompany == True :
